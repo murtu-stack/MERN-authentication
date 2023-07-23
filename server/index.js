@@ -17,7 +17,12 @@ const bcrypt = require('bcryptjs')
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/full-mern-stack-video')
+mongoose.connect('mongodb://localhost:27017/full-mern-stack-video',{ useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+	console.log("MOngoDB connected")
+}).catch((err) => {
+	console.log(`OH NO! MONGOOSE MONGO CONNECTION ERROR!`);
+	console.log(err);
+})
 
 app.post('/api/register', async (req, res) => {
 	console.log(req.body)
